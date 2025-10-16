@@ -6,8 +6,9 @@ export const fetchedCatFact = async (): Promise<string> => {
     const response = await axios.get(config.catFactApi, { timeout: 5000 });
     console.log("Successfully fetched cat fact");
     return response.data.fact;
-  } catch (error: any) {
-    console.log("Error fetching cat fact:", error.message);
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    console.log("Error fetching cat fact:", errorMessage);
     return "Could not fetch cat fact at this time. Please try again later.";
   }
 };

@@ -8,22 +8,22 @@ export const getProfile = async (
 ): Promise<void> => {
   try {
     const catFact = await fetchedCatFact();
-    const response = {
+    res.status(200).json({
       status: "success",
       user: {
         email: config.email,
         name: config.name,
-        stack: "Node.js/Express/TypeScript",
+        stack: "Node.js|Express|TypeScript",
       },
       timestamp: new Date().toISOString(),
       fact: catFact,
-    };
-
-    res.status(200).json(response);
-  } catch (error) {
+    });
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
     res.status(500).json({
       status: "error",
       message: "Get profile failed!",
+      error: errorMessage
     });
   }
 };
