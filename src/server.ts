@@ -13,7 +13,7 @@ app.use(cors());
 
 const limiter = rateLimit({
   windowMs: 60000,
-  limit: 100,
+  limit: 50,
   standardHeaders: "draft-8",
   legacyHeaders: false,
   message: {
@@ -51,6 +51,24 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-app.listen(config.port, "0.0.0.0", () => {
-  console.log(`Server running on http://localhost:${config.port}`);
+const PORT = config.port || 5500;
+
+const server = app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
+
+process.on("SIGTERM", () => {
+  console.log("SIGTERM received, shutting down gracefully...");
+  server.close(() => {
+    console.log("Server closed");
+    process.exit(0);
+  });
+});
+
+process.on("SIGINT", () => {
+  console.log("SIGINT received, shutting down gracefully...");
+  server.close(() => {
+    console.log("Server closed");
+    process.exit(0);
+  });
 });
