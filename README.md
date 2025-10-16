@@ -1,8 +1,14 @@
-# Profile Endpoint API
+PROFILE ENDPOINT API:
 
 A simple RESTful API that returns profile information along with dynamic cat facts from an external API.
 
-# Features
+=> Live Demo
+
+The API is deployed and running on Railway:
+- Live URL: `https://profile-endpoint-production.up.railway.app/me`
+- Health Check: `https://profile-endpoint-production.up.railway.app/health`
+
+=> Features
 
 - Profile endpoint with user information
 - Dynamic cat facts integration
@@ -11,52 +17,52 @@ A simple RESTful API that returns profile information along with dynamic cat fac
 - Health check endpoint
 - CORS enabled
 - Security headers with Helmet
+- Deployed on Railway
 
-# Tech Stack
+=> Tech Stack
 
-- **Runtime:** Node.js
-- **Framework:** Express.js
-- **Language:** TypeScript
-- **HTTP Client:** Axios
+- Runtime: Node.js
+- Framework: Express.js
+- Language: TypeScript
+- HTTP Client: Axios
+- Deployment: Railway
 
-# Prerequisites
+=> Prerequisites
 
-Before you begin, ensure you have the following installed:
-- [Node.js](https://nodejs.org/) (v18 or higher)
-- [npm](https://www.npmjs.com/) (comes with Node.js)
+- Node.js: `https://nodejs.org/`
+- npm: `https://www.npmjs.com/`
 
-# Dependencies
+=> Dependencies
 
-# Production Dependencies
-- `express` (^5.1.0) - Web framework
-- `axios` (^1.12.2) - HTTP client for API calls
-- `cors` (^2.8.5) - Enable CORS
-- `dotenv` (^17.2.3) - Environment variable management
-- `express-rate-limit` (^8.1.0) - Rate limiting middleware
-- `helmet` (^8.1.0) - Security headers
+--> Production Dependencies
+- express - Web framework
+- axios - HTTP client for API calls
+- cors - Enable CORS
+- dotenv - Environment variable management
+- express-rate-limit - Rate limiting middleware
+- helmet - Security headers
 
-# Development Dependencies
-- `typescript` (^5.9.3) - TypeScript compiler
-- `ts-node-dev` (^2.0.0) - Development server with hot reload
-- `tsconfig-paths` (^4.2.0) - Path mapping support
-- `@types/cors` (^2.8.19) - TypeScript types for CORS
-- `@types/express` (^5.0.3) - TypeScript types for Express
-- `@types/node` (^24.7.2) - TypeScript types for Node.js
+--> Development Dependencies
+- typescript - TypeScript compiler
+- ts-node-dev - Development server with hot reload
+- @types/cors - TypeScript types for CORS
+- @types/express - TypeScript types for Express
+- @types/node - TypeScript types for Node.js
 
-# Installation
+=> Installation
 
-1. **Clone the repository**
+1. Clone the repository
    ```bash
-   git clone https://github.com/Belladihno/profile-endpoint.git
+   git clone `https://github.com/Belladihno/profile-endpoint.git`
    cd profile-endpoint
    ```
 
-2. **Install dependencies**
+2. Install dependencies
    ```bash
    npm install
    ```
 
-3. **Set up environment variables**
+3. Set up environment variables
    
    Create a `.env` file in the root directory:
    ```bash
@@ -72,16 +78,16 @@ Before you begin, ensure you have the following installed:
    CAT_FACT_API=https://catfact.ninja/fact
    ```
 
-# Running Locally
+=> Running Locally
 
-# Development Mode (with hot reload)
+--> Development Mode 
 ```bash
 npm run dev
 ```
 
 The server will start on `http://localhost:5500`
 
-# Production Mode
+--> Production Mode
 ```bash
 # Build TypeScript to JavaScript
 npm run build
@@ -90,12 +96,19 @@ npm run build
 npm start
 ```
 
-# API Endpoints
+=> Deployment
 
-# Get Profile
-**Endpoint:** `GET /me`
+The live API is available at:
+- Profile Endpoint: `https://profile-endpoint-production.up.railway.app/me`
+- Health Check: `https://profile-endpoint-production.up.railway.app/health`
 
-**Response:**
+
+=> API Endpoints
+
+--> Get Profile
+Endpoint: `GET /me`
+
+Response:
 ```json
 {
   "status": "success",
@@ -109,14 +122,14 @@ npm start
 }
 ```
 
-**Status Codes:**
+Status Codes:
 - `200` - Success
 - `500` - Server error
 
-# Health Check
-**Endpoint:** `GET /health`
+--> Health Check
+Endpoint: `GET /health`
 
-**Response:**
+Response:
 ```json
 {
   "status": "ok",
@@ -124,21 +137,21 @@ npm start
 }
 ```
 
-# Rate Limiting
+=> Rate Limiting
 
 The API implements rate limiting:
-- **Window:** 60 seconds (1 minute)
-- **Max Requests:** 50 requests per window per IP
-- **Response when exceeded:**
+- Window: 60 seconds (1 minute)
+- Max Requests: 50 requests per window per IP
+- Response when exceeded:
   ```json
   {
     "error": "You have sent too many requests. Please try again later"
   }
   ```
 
-# Error Handling
+=> Error Handling
 
-# Cat Facts API Failure
+--> Cat Facts API Failure
 If the external Cat Facts API fails or times out, the endpoint returns a fallback message:
 ```json
 {
@@ -148,7 +161,7 @@ If the external Cat Facts API fails or times out, the endpoint returns a fallbac
 
 The `/me` endpoint will still return a `200` status code with the fallback message.
 
-# 404 Not Found
+--> 404 Not Found
 For undefined routes:
 ```json
 {
@@ -157,7 +170,7 @@ For undefined routes:
 }
 ```
 
-# Project Structure
+=> Project Structure
 
 ```
 profile-endpoint/
@@ -175,13 +188,31 @@ profile-endpoint/
 ├── .gitignore                 # Git ignore rules
 ├── nodemon.json               # Nodemon configuration
 ├── package.json               # Project dependencies
-├── tsconfig.json              # TypeScript configuration
-└── README.md                  # This file
+├── README.md                  # This file
+└── tsconfig.json              # TypeScript configuration
 ```
 
-# Testing the API
+=> Testing the API
 
-# Using cURL
+--> Using cURL
+```bash
+# Get profile
+curl https://profile-endpoint-production.up.railway.app/me
+
+# Health check
+curl https://profile-endpoint-production.up.railway.app/health
+```
+
+--> Using a Browser
+- Profile: https://profile-endpoint-production.up.railway.app/me
+- Health: https://profile-endpoint-production.up.railway.app/health
+
+--> Using Postman or Thunder Client
+1. Create a new GET request
+2. Set URL to `https://profile-endpoint-production.up.railway.app/me`
+3. Send the request
+
+--> Locally
 ```bash
 # Get profile
 curl http://localhost:5500/me
@@ -190,42 +221,26 @@ curl http://localhost:5500/me
 curl http://localhost:5500/health
 ```
 
-# Using a Browser
-Simply navigate to:
-- Profile: http://localhost:5500/me
-- Health: http://localhost:5500/health
-
-# Using Postman or Thunder Client
-1. Create a new GET request
-2. Set URL to `http://localhost:5500/me`
-3. Send the request
-
-# Development Notes
+=> Development Notes
 
 - The server uses `nodemon` for automatic restarts during development
-- TypeScript path aliases are configured (`@/` maps to `src/`)
 - All timestamps are in UTC ISO 8601 format
 - CORS is enabled for all origins
 - Helmet adds security headers automatically
+- The application handles graceful shutdowns on SIGTERM and SIGINT signals
 
-# Troubleshooting
+=> Troubleshooting
 
-# Missing environment variables
+--> Missing environment variables
 If you see "ERROR: EMAIL and NAME environment variables are missing":
 - Ensure your `.env` file exists
 - Check that EMAIL and NAME are set in `.env`
 
-### TypeScript errors
-```bash
-# Clear node_modules and reinstall
-rm -rf node_modules package-lock.json
-npm install
-```
 
-## License
+=> License
 
 ISC
 
-## Author
+=> Author
 
 Abimbola Omisakin - abimbolaomisakin678@gmail.com
