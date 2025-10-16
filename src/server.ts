@@ -1,11 +1,29 @@
 import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
+import helmet from "helmet";
+import { rateLimit } from "express-rate-limit";
 import { config } from "@/config/app.config";
 import meRoute from "@/routes/me";
 
 const app = express();
 
+app.use(helmet());
+
 app.use(cors());
+
+const limiter = rateLimit({
+  windowMs: 60000,
+  limit: 10,
+  standardHeaders: "draft-8",
+  legacyHeaders: false,
+  message: {
+    error:
+      "You have sent too many requests. Please try again later",
+  },
+});
+
+app.use(limiter);
+
 app.use(express.json());
 
 app.use((req: Request, res: Response, next: NextFunction) => {
@@ -22,7 +40,7 @@ app.use("/me", meRoute);
 app.use((req: Request, res: Response) => {
   res.status(404).json({
     status: "error",
-    message: `Can't find ${req.originalUrl} on this server!`
+    message: `Can't find ${req.originalUrl} on this server!`,
   });
 });
 
