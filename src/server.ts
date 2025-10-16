@@ -17,8 +17,7 @@ const limiter = rateLimit({
   standardHeaders: "draft-8",
   legacyHeaders: false,
   message: {
-    error:
-      "You have sent too many requests. Please try again later",
+    error: "You have sent too many requests. Please try again later",
   },
 });
 
@@ -52,6 +51,6 @@ app.use((err: Error, req: Request, res: Response, next: NextFunction) => {
   });
 });
 
-app.listen(config.port, () => {
+app.listen(config.port, "0.0.0.0", () => {
   console.log(`Server running on http://localhost:${config.port}`);
 });
