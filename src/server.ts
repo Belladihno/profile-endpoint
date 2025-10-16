@@ -2,8 +2,8 @@ import express, { NextFunction, Request, Response } from "express";
 import cors from "cors";
 import helmet from "helmet";
 import { rateLimit } from "express-rate-limit";
-import { config } from "@/config/app.config";
-import meRoute from "@/routes/me";
+import { config } from "./config/app.config";
+import meRoute from "./routes/me";
 
 const app = express();
 

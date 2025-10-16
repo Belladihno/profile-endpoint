@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { fetchedCatFact } from "@/services/cat.service";
-import { config } from "@/config/app.config";
+import { fetchedCatFact } from "../services/cat.service";
+import { config } from "../config/app.config";
 
 export const getProfile = async (
   req: Request,
