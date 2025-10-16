@@ -13,7 +13,7 @@ export const getProfile = async (
       user: {
         email: config.email,
         name: config.name,
-        stack: "Node.js|Express|TypeScript",
+        stack: "Node.js/Express/TypeScript",
       },
       timestamp: new Date().toISOString(),
       fact: catFact,

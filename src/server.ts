@@ -13,7 +13,7 @@ app.use(cors());
 
 const limiter = rateLimit({
   windowMs: 60000,
-  limit: 10,
+  limit: 100,
   standardHeaders: "draft-8",
   legacyHeaders: false,
   message: {
